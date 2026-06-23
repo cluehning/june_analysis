@@ -30,85 +30,79 @@ Make sure you have Python installed, then install the required packages:
 pip install numpy matplotlib
 ```
 
-## Main functions
+## Core Functionality
 
-### 1. evaluate_function(func, x, y)
-Evaluates a user-defined function of two variables at scalar or array inputs.
+### Function Evaluation
 
-### 2. partial_derivative(func, x, y, axis="x", h=1e-4)
-Computes a numerical partial derivative with respect to x or y using a central difference scheme.
+evaluate_function(func, x, y)
+Evaluates a function for scalar or array inputs. Supports both vectorized and non-vectorized functions.
 
-### 3. reference_note(concept)
-Returns a short note pointing the user to the relevant definition or theorem in their course PDF or notes.
+partial_derivative(func, x, y, axis="x", h=1e-4)
+Computes numerical partial derivatives using the central difference method.
 
-### 4. gradient(func, x0, y0, h=1e-4)
-Returns the gradient of a scalar function at a point $(x_0, y_0)$.
+### Scalar Functions
 
-### 5. hessian_matrix(func, x0, y0, h=1e-4)
-Returns the Hessian matrix of a scalar function at a point $(x_0, y_0)$.
+gradient(func, x0, y0)
+Computes the gradient at a given point.
 
-### 6. evaluate_vector_field(vector_field, x, y)
-Evaluates a vector field given either as two component functions or as a callable returning two outputs.
+hessian_matrix(func, x0, y0)
+Computes the Hessian matrix using second-order finite differences.
 
-### 7. jacobian_matrix(vector_field, x0, y0, h=1e-4)
-Computes the Jacobian matrix of a 2D vector field at a point.
+### Vector Fields
 
-### 8. divergence(vector_field, x0, y0, h=1e-4)
-Computes the divergence of a 2D vector field.
+evaluate_vector_field(vector_field, x, y)
+Evaluates a 2D vector field.
 
-### 9. rotation(vector_field, x0, y0, h=1e-4)
-Computes the 2D rotation/curl of a vector field.
+jacobian_matrix(vector_field, x0, y0)
+Computes the Jacobian matrix.
 
-### 10. compute_fourier_spectrum(values)
-Computes a 2D Fourier spectrum from sampled values.
+divergence(vector_field, x0, y0)
+Computes the divergence as the trace of the Jacobian.
 
-### 11. taylor_polynomial(func, x0, y0, degree=2, h=1e-4)
-Builds a Taylor polynomial of degree 0, 1, or 2 around a point.
+rotation(vector_field, x0, y0)
+Computes the 2D curl (rotation).
 
-### 12. analyze_function(func, x_range=(-2, 2), y_range=(-2, 2), resolution=301, h=1e-4, show=True, save_path=None, include_fourier=True, include_taylor=True, taylor_point=(0, 0), taylor_degree=2)
-Creates a set of plots for:
+### Transformations and Approximation
 
-- the original function
-- the partial derivative with respect to x
-- the partial derivative with respect to y
-- optionally a Fourier spectrum
-- optionally a Taylor approximation and its difference from the original function
+compute_fourier_spectrum(values)
+Computes the 2D Fourier spectrum of sampled data.
 
-## Included example functions
+taylor_polynomial(func, x0, y0, degree=2)
+Constructs a Taylor approximation around a point.
 
-The script already contains a few example functions inspired by typical analysis exercises:
+### Visualization
 
-### exam_style_function(x, y)
-A smooth oscillatory function that is useful for testing gradients, Hessians, and visual behavior.
+analyze_function(...)
+Creates plots for:
 
-### exam_vector_field(x, y)
-A simple 2D vector field used for Jacobian, divergence, and rotation examples.
+- the function surface
+- partial derivatives
+- optional Fourier spectrum
+- optional Taylor approximation and error
 
-### exam_style_function_2(x, y)
-A second example function with different structure, useful for comparing two different analysis cases.
+Returns all computed data as NumPy arrays.
 
-## Example usage
+## Included Examples
 
-```python
-from Tool import analyze_function, gradient, hessian_matrix
+exam_style_function(x, y)
+Smooth oscillatory function with Gaussian decay.
 
+exam_style_function_2(x, y)
+Combination of rational and exponential components.
 
-def f(x, y):
-    return x**2 + y**2
-
-analyze_function(f)
-print(gradient(f, 0, 0))
-print(hessian_matrix(f, 0, 0))
-```
-
-You can also run the script directly:
-
-```bash
-python Tool.py
-```
+exam_vector_field(x, y)
+Simple vector field for testing divergence and rotation.
 
 ## Notes
 
-This project is meant for learning and visualization. The calculations are numerical rather than symbolic, so they are especially helpful for building intuition about how functions behave and how key concepts from multivariable analysis look in practice.
+- All derivatives are computed numerically using finite differences.
+- Results are approximations and may depend on the step size h.
+- The tool is intended for learning and visualization rather than symbolic computation.
+- Plot interactivity depends on the matplotlib backend.
 
-As the project grows, it could be extended to support more variables, more advanced plots, and a more interactive user interface.
+## Possible Extensions
+
+- Support for higher-dimensional functions
+- Interactive controls for parameters
+- Improved visualization options
+- Integration with symbolic tools
