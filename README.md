@@ -34,45 +34,45 @@ pip install numpy matplotlib
 
 ### Function Evaluation
 
-evaluate_function(func, x, y)
+```evaluate_function(func, x, y)```
 Evaluates a function for scalar or array inputs. Supports both vectorized and non-vectorized functions.
 
-partial_derivative(func, x, y, axis="x", h=1e-4)
+```partial_derivative(func, x, y, axis="x", h=1e-4)```
 Computes numerical partial derivatives using the central difference method.
 
 ### Scalar Functions
 
-gradient(func, x0, y0)
+```gradient(func, x0, y0)```
 Computes the gradient at a given point.
 
-hessian_matrix(func, x0, y0)
+```hessian_matrix(func, x0, y0)```
 Computes the Hessian matrix using second-order finite differences.
 
 ### Vector Fields
 
-evaluate_vector_field(vector_field, x, y)
+```evaluate_vector_field(vector_field, x, y)```
 Evaluates a 2D vector field.
 
-jacobian_matrix(vector_field, x0, y0)
+```jacobian_matrix(vector_field, x0, y0)```
 Computes the Jacobian matrix.
 
-divergence(vector_field, x0, y0)
+```divergence(vector_field, x0, y0)```
 Computes the divergence as the trace of the Jacobian.
 
-rotation(vector_field, x0, y0)
+```rotation(vector_field, x0, y0)```
 Computes the 2D curl (rotation).
 
 ### Transformations and Approximation
 
-compute_fourier_spectrum(values)
+```compute_fourier_spectrum(values)```
 Computes the 2D Fourier spectrum of sampled data.
 
-taylor_polynomial(func, x0, y0, degree=2)
+```taylor_polynomial(func, x0, y0, degree=2)```
 Constructs a Taylor approximation around a point.
 
 ### Visualization
 
-analyze_function(...)
+```analyze_function(...)```
 Creates plots for:
 
 - the function surface
@@ -84,13 +84,13 @@ Returns all computed data as NumPy arrays.
 
 ## Included Examples
 
-exam_style_function(x, y)
+```exam_style_function(x, y)```
 Smooth oscillatory function with Gaussian decay.
 
-exam_style_function_2(x, y)
+```exam_style_function_2(x, y)```
 Combination of rational and exponential components.
 
-exam_vector_field(x, y)
+```exam_vector_field(x, y)```
 Simple vector field for testing divergence and rotation.
 
 ## Notes
