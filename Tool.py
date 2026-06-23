@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def evaluate_function(func, x, y):
-    """Evaluate a user-defined function on arrays or scalars."""
+    """Evaluate function on arrays or scalars."""
     try:
         values = func(x, y)
     except TypeError:
@@ -23,7 +23,7 @@ def partial_derivative(func, x, y, axis="x", h=1e-4):
 
 
 def reference_note(concept):
-    """Return a short note pointing the user to the relevant definition or theorem in their PDF."""
+    """Reference to Script."""
     notes = {
         "Gradient": "Siehe die Definition 3.2. im Analysis 2, Differential- und Integralrechnung für Funktionen mehrerer reeller Veränderlichen — Rolf Rannacher",
         "Hessian": "Siehe die Definition 3.3. im Analysis 2, Differential- und Integralrechnung für Funktionen mehrerer reeller Veränderlichen — Rolf Rannacher",
@@ -35,7 +35,7 @@ def reference_note(concept):
 
 
 def gradient(func, x0, y0, h=1e-4):
-    """Return the gradient of a scalar function at (x0, y0)."""
+    """Gradient of a scalar function at (x0, y0)."""
     try:
         gx = partial_derivative(func, x0, y0, axis="x", h=h)
         gy = partial_derivative(func, x0, y0, axis="y", h=h)
@@ -45,7 +45,7 @@ def gradient(func, x0, y0, h=1e-4):
 
 
 def hessian_matrix(func, x0, y0, h=1e-4):
-    """Return the Hessian matrix of a scalar function at (x0, y0)."""
+    """Hessian matrix of a scalar function at (x0, y0)."""
     try:
         f0 = evaluate_function(func, x0, y0)
         fxx = (evaluate_function(func, x0 + h, y0) - 2 * f0 + evaluate_function(func, x0 - h, y0)) / (h**2)
@@ -72,7 +72,7 @@ def evaluate_vector_field(vector_field, x, y):
 
 
 def jacobian_matrix(vector_field, x0, y0, h=1e-4):
-    """Return the Jacobian matrix of a 2D vector field at (x0, y0)."""
+    """Jacobian matrix of a 2D vector field at (x0, y0)."""
     try:
         if callable(vector_field):
             values = vector_field(x0, y0)
@@ -101,7 +101,7 @@ def jacobian_matrix(vector_field, x0, y0, h=1e-4):
 
 
 def divergence(vector_field, x0, y0, h=1e-4):
-    """Return the divergence of a 2D vector field at (x0, y0)."""
+    """Divergence of a 2D vector field at (x0, y0)."""
     try:
         jac = jacobian_matrix(vector_field, x0, y0, h=h)
         return float(jac[0, 0] + jac[1, 1])
@@ -111,7 +111,7 @@ def divergence(vector_field, x0, y0, h=1e-4):
 
 
 def rotation(vector_field, x0, y0, h=1e-4):
-    """Return the 2D rotation/curl of a vector field at (x0, y0)."""
+    """2D rotation/curl of a vector field at (x0, y0)."""
     try:
         jac = jacobian_matrix(vector_field, x0, y0, h=h)
         return float(jac[1, 0] - jac[0, 1])
@@ -121,14 +121,14 @@ def rotation(vector_field, x0, y0, h=1e-4):
 
 
 def compute_fourier_spectrum(values):
-    """Compute a 2D Fourier spectrum from sampled values."""
+    """2D Fourier spectrum from sampled values."""
     spectrum = np.fft.fft2(values)
     spectrum = np.fft.fftshift(spectrum)
     return np.abs(spectrum)
 
 
 def taylor_polynomial(func, x0, y0, degree=2, h=1e-4):
-    """Build a Taylor polynomial of degree 0, 1 or 2
+    """Taylor polynomial of degree 0, 1 or 2
     around a point (x0, y0)."""
     if degree not in (0, 1, 2):
         raise ValueError("degree must be 0, 1 or 2")
@@ -176,7 +176,7 @@ def analyze_function(func, x_range=(-2, 2), y_range=(-2, 2), resolution=301,
                      h=1e-4, show=True, save_path=None, include_fourier=True,
                      include_taylor=True,
                      taylor_point=(0, 0), taylor_degree=2):
-    """Create interactive 3D plots for a function,
+    """Interactive 3D plots for a function,
     its partial derivatives, and optional transforms."""
     x = np.linspace(x_range[0], x_range[1], resolution)
     y = np.linspace(y_range[0], y_range[1], resolution)
